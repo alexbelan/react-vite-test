@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import InputText from './InputText';
+import { Button, Input } from '@mantine/core';
 
 const baseValues = {
     email: '',
@@ -27,26 +27,39 @@ const Signin = ({onSubmit}) => {
         <form 
             onSubmit={handleSubmit}
         >
-            <InputText
-                id={'emailPro'}
-                type="email"
-                isRequired
-                placeholder="Your email"
-                name='email'
-                onChange={handleChange}
-                value={values.email}
+            <Input.Wrapper
+                id="emailPro"
+                withAsterisk
                 label="Email"
-            />
-            <InputText
-                type="password"
-                isRequired
-                placeholder="Your password"
-                name='password'
-                onChange={handleChange}
-                value={values.password}
+            >
+                <Input
+                    id={'emailPro'}
+                    type="email"
+                    isRequired
+                    placeholder="Your email"
+                    name='email'
+                    onChange={handleChange}
+                    value={values.email}
+                    label="Email"
+                />
+            </Input.Wrapper>
+            <Input.Wrapper
+                id="password"
+                withAsterisk
                 label="Password"
-            />
-            <button type='submit'>Submit</button>
+            >
+                <Input
+                    id="password"
+                    type="password"
+                    isRequired
+                    placeholder="Your password"
+                    name='password'
+                    onChange={handleChange}
+                    value={values.password}
+                    label="Password"
+                />
+            </Input.Wrapper>
+            <Button sx={{margin: '10px 0'}} type='submit'>Submit</Button>
         </form>
     )
 }

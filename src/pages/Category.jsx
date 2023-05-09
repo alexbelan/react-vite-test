@@ -2,6 +2,7 @@ import React, { useCallback, useRef, useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { useFetchData } from '../hooks/fetchData';
 import ErrorPage from './ErrorPage';
+import { Card } from '@mantine/core';
 
 const Category = () => {
     let location = useLocation();
@@ -39,14 +40,29 @@ const Category = () => {
                     {data.map((item, index) => {
                         if(data.length === index + 1) {
                             return (
-                                <div ref={lastNodeRef} key={item.id}>
-                                    <h2><Link  to={`${location.pathname}/${item.id}`}>{item.name}</Link></h2>
+                                <div style={{
+                                    margin: '10px 0'
+                                }}>
+                                    <Card 
+                                        shadow="sm"
+                                        padding="sm"
+                                        radius="md"
+                                        withBorder
+                                        ref={lastNodeRef}
+                                        key={item.id}>
+                                        <h2><Link  to={`${location.pathname}/${item.id}`}>{item.name}</Link></h2>
+                                    </Card>
                                 </div>
+                                
                             )
                         }
                         return (
-                            <div key={item.id}>
-                                <h2><Link  to={`${location.pathname}/${item.id}`}>{item.name}</Link></h2>
+                            <div style={{
+                                margin: '10px 0'
+                            }}>
+                                <Card shadow="sm" padding="sm" radius="md" withBorder key={item.id}>
+                                    <h2><Link to={`${location.pathname}/${item.id}`}>{item.name}</Link></h2>
+                                </Card>
                             </div>
                         )
                     })}

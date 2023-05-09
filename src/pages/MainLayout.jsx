@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from "react";
 import { NavLink, Outlet, useNavigate, useOutlet } from "react-router-dom"
 import { useAuth } from "../context/AuthProvider";
 import PrivateRoute from "./PrivateRoute";
+import { Button, Header } from "@mantine/core";
 
 const MainPage = lazy(() => import('./MainPage'))
 
@@ -12,59 +13,61 @@ const MainLayout = () => {
 
     return (
         <>
-            <nav className="route-nav">
-                <ul>
-                    <li>
-                        <NavLink to='/' style={({ isActive }) => {
-                            return {
-                                color: isActive ? "red" : "black",
-                            };
-                        }} >
-                            Main page
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to='/character' style={({ isActive }) => {
-                            return {
-                                color: isActive ? "red" : "black",
-                            };
-                        }} >
-                            Characters
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to='/episode' style={({ isActive }) => {
-                            return {
-                                color: isActive ? "red" : "black",
-                            };
-                        }}>
-                            Episodes
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to='/location' style={({ isActive }) => {
-                            return {
-                                color: isActive ? "red" : "black",
-                            };
-                        }}>
-                            Locations
-                        </NavLink>
-                    </li>
-                    {auth.user ? (
+            <Header>
+                <nav className="route-nav">
+                    <ul>
                         <li>
-                            <button onClick={auth.signout}>
-                                logout
-                            </button>
+                            <NavLink to='/' style={({ isActive }) => {
+                                return {
+                                    color: isActive ? "red" : "black",
+                                };
+                            }} >
+                                Main page
+                            </NavLink>
                         </li>
-                    ) : (
                         <li>
-                            <button onClick={() => navigate('/login')}>
-                                login
-                            </button>
+                            <NavLink to='/character' style={({ isActive }) => {
+                                return {
+                                    color: isActive ? "red" : "black",
+                                };
+                            }} >
+                                Characters
+                            </NavLink>
                         </li>
-                    )}
-                </ul>
-            </nav>
+                        <li>
+                            <NavLink to='/episode' style={({ isActive }) => {
+                                return {
+                                    color: isActive ? "red" : "black",
+                                };
+                            }}>
+                                Episodes
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to='/location' style={({ isActive }) => {
+                                return {
+                                    color: isActive ? "red" : "black",
+                                };
+                            }}>
+                                Locations
+                            </NavLink>
+                        </li>
+                        {auth.user ? (
+                            <li>
+                                <Button onClick={auth.signout}>
+                                    logout
+                                </Button>
+                            </li>
+                        ) : (
+                            <li>
+                                <Button onClick={() => navigate('/login')}>
+                                    login
+                                </Button>
+                            </li>
+                        )}
+                    </ul>
+                </nav>
+            </Header>
             <main>
                 {outlet === null ? (
                     <Suspense fallback={'Loading...'}>

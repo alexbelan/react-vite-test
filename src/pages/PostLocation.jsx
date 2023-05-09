@@ -2,6 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import ErrorPage from './ErrorPage';
 import useFetch from '../hooks/fetch'
+import { Card } from '@mantine/core';
 
 
 const PostLocation = () => {
@@ -18,13 +19,15 @@ const PostLocation = () => {
                 <p>...Loading</p>
             }
             {error && <ErrorPage />}
-            {!!data && (<>
+            {!!data && (<Card>
                 <h2>{data.name}</h2>
-                <ul>
-                    <li>Type: {data.type || '-'}</li>
-                    <li>Dimension: {data.dimension || '-'}</li>
-                </ul>
-            </>)}
+                <Card.Section>
+                    <ul>
+                        <li>Type: {data.type || '-'}</li>
+                        <li>Dimension: {data.dimension || '-'}</li>
+                    </ul>
+                </Card.Section>
+            </Card>)}
             
         </>
     )
