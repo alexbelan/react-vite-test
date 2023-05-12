@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { HiUser } from "react-icons/hi";
 import InputText from './InputText';
 

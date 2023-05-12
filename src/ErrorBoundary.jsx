@@ -15,7 +15,7 @@ class ErrorBoundary extends Component {
         console.error('error info', errorInfo)
     }
 
-    static getDerivedStateFromError(error) {
+    static getDerivedStateFromError() {
         return {
             hasError: true
         }
@@ -28,8 +28,10 @@ class ErrorBoundary extends Component {
                 <h3>Error in my site</h3>
             )
         }
-
-        return this.props.children
+        if(this.props?.children) {
+            return this.props?.children
+        }
+        return null
     }
 }
 

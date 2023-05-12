@@ -1,7 +1,6 @@
 import './App.css';
 import ErrorBoundary from './ErrorBoundary';
 import { BrowserRouter as Router } from "react-router-dom";
-import MainPage from './pages/MainPage';
 import Main from './pages/Main';
 
 function App() {

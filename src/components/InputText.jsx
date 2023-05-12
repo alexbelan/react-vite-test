@@ -1,4 +1,4 @@
-import React, { useMemo } from "react"
+import { useMemo } from "react"
 
 const InputText = ({
     name,
@@ -7,13 +7,14 @@ const InputText = ({
     label,
     placeholder,
     prefix,
-    id,
+    id=null,
     isRequired=false,
     type='text',
 }) => {
+
     const labelId = useMemo(() => {
-        return !!id ? id : name + '-' + window.crypto.randomUUID()
-    }, []) 
+        return id ? id : name + '-' + window.crypto.randomUUID()
+    }, [id, name]) 
 
     const handleFocus = (e) => {
         e.target.parentNode.style.border = '1px solid blue'
